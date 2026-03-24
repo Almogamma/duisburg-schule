@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin | Register Teacher</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="register-container" style="margin: auto; margin-top: 5vh;">
+        <h2 style="color: #cb982a;">Add Teacher Profile</h2>
+        <div style="display: flex; gap: 10px;">
+            <input type="text" id="regFirstName" placeholder="First Name">
+            <input type="text" id="regLastName" placeholder="Last Name">
+        </div>
+        <input type="text" id="regUsername" placeholder="Username">
+        <input type="password" id="regPassword" placeholder="Temporary Password">
+        <input type="text" id="regPhone" placeholder="Phone">
+        <input type="text" id="regSubject" placeholder="Subject">
+        <input type="text" id="regClasses" placeholder="Classes (e.g., A1, B1)">
+
+        <button onclick="handleRegistration()">CREATE TEACHER PROFILE</button>
+        <a href="home.html" style="display: block; margin-top: 15px;">← Back to Dashboard</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/register.js"></script>
+</body>
+
+</html>

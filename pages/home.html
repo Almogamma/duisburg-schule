@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DU School | Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="overlay"></div>
+
+    <nav>
+        <a href="home.html" class="logo">DU School</a>
+        <div class="nav-links">
+            <span id="navUserName" class="user-name">Loading...</span>
+            <a id="navHome" href="home.html" class="active">Home</a>
+            <a id="navAttendance" onclick="loadTeacherStudents()">Attendance</a>
+            <a id="navProfile" onclick="showProfile()">My Profile</a>
+            <a onclick="logout()" style="color: #d9534f; cursor: pointer;">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div id="mainContent" class="welcome-card">
+            <h1 style="color: #cb982a;">Welcome Back!</h1>
+            <p>Select an option below to manage your classes.</p>
+            <div class="action-grid">
+                <button class="btn-action" onclick="loadTeacherStudents()">📅 Mark Attendance</button>
+                <button class="btn-action" onclick="alert('Grades coming soon')">📝 Add Grades</button>
+            </div>
+        </div>
+
+        <div id="profileSection" class="welcome-card" style="display: none;">
+            <h2 style="color: #cb982a;">My Profile</h2>
+            <img id="profileImage" src="../assets/default-avatar.png"
+                style="width:120px; height:120px; border-radius:50%; border:3px solid #cb982a; object-fit:cover; margin-bottom: 10px;">
+            <br>
+            <input type="file" id="photoInput" hidden accept="image/*" onchange="uploadPhoto(this)">
+            <button class="btn-secondary" onclick="document.getElementById('photoInput').click()"
+                style="padding: 8px 15px;">Change Photo</button>
+
+            <h3 id="profileNameDisplay" style="color: #cb982a; margin: 15px 0;">Loading Name...</h3>
+
+            <div style="text-align: left; max-width: 350px; margin: 20px auto;">
+                <label style="font-weight: bold; color: #cb982a;">Phone Number</label>
+                <input type="text" id="editPhone" placeholder="Enter phone number">
+
+                <button class="btn-action" onclick="updateTeacherInfo()">Save Phone Number</button>
+                <button onclick="resetPassword()"
+                    style="background: #6c757d; margin-top: 10px; width: 100%; padding: 12px; border: none; border-radius: 8px; color: white; font-weight: bold; cursor: pointer;">Reset
+                    Password</button>
+            </div>
+            <button class="btn-secondary" onclick="location.reload()">Back to Dashboard</button>
+        </div>
+
+        <div id="attendanceSection" class="welcome-card" style="display: none;">
+            <div class="attendance-header">
+                <h2 style="color: #cb982a; margin: 0;">Mark Attendance</h2>
+                <select id="classFilter" onchange="filterByClass(this.value)" class="class-dropdown">
+                </select>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Class</th>
+                            <th style="text-align: center;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 20px; text-align: left;">
+                <button class="btn-secondary" onclick="location.reload()">Back to Dashboard</button>
+            </div>
+        </div>
+
+    </div>
+
+    <template id="studentRowTemplate">
+        <tr class="student-row">
+            <td class="ui-name"></td>
+            <td class="ui-class"></td>
+            <td style="text-align: center;">
+                <button class="present-btn">Mark Present</button>
+            </td>
+        </tr>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/profile.js"></script>
+    <script src="../js/attendance.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+
+</html>
